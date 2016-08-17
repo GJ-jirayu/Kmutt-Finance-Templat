@@ -121,7 +121,7 @@ function clickCancel(elid) {
 				รายงาน-งบ1
 			</td>
 			<td>
-				<center><img src = /Kmutt-portlet/image2/detail.png width = 30px; higth = 30px; onClick = 'clickAddDetl("#demo1")'></center>
+				<center><img src = /Kmutt-portlet/image/adddetail.png width = 30px; higth = 30px; onClick = 'clickAddDetl("#demo1")'></center>
 			</td>
 			<td>
 				<center><img src = /Kmutt-portlet/image/edit.png width = 30px; higth = 30px; onClick = 'clickEdit("#demo1")'></center>
