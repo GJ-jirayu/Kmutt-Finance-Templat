@@ -8,15 +8,35 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script> 
 <script type="text/javascript">
 
-function clickEdit(elid) {
-	if ($(".subdiv").is(":visible")){
-		$(".subdiv").slideToggle( "slow" );
-	}
+$(document).ready(function(){    
 	if ($(elid).is(":visible")) {         
-		return false;						
-	} else {								
-		$(elid).slideToggle( "slow" );      	    
+		$(elid).slideToggle( "slow" );  
+	}else{
+		return false;
+	}   
+});
+
+function clickEdit(elid) {
+	alert(elid);
+	if(elid != elid){
+		$( elid ).hide();
+	}else if(elid == elid){
+		$( elid ).show();
 	}
+	
+	/* $( elid ).toggle( display );
+	
+	if ( display === true ) {
+		  $( elid ).show();
+		} else if ( display === false ) {
+		  $( elid ).hide();
+		} */
+	
+	/* if ($(elid).is(":hidden")) {         
+		$(elid).slideToggle( "slow" );  
+	}else{
+		return false;
+	} */
 }
 
 function clickAdd(elid) {
@@ -59,7 +79,7 @@ function clickCancel(elid) {
 
 <%-- <body> givenName: <%=givenName %> --%>
 
-<h2><center>Budget Type</h2><br>
+<h2><center>Header</h2><br>
 	ค้นหา : <input type="text" name="search" id="keySearch" placeholder="ค้นหา">
 	&nbsp;
 	<input class="btn btn-info" type="submit" id="btnSearch" value="ค้นหา	">
@@ -70,7 +90,7 @@ function clickCancel(elid) {
 		<table id="tablehead" width=100%>
 			<tr>
 				<td>
-					<h3>&nbsp;Add Budget Type</h3>
+					<h3>&nbsp;Add Header</h3>
 					&nbsp;ชื่อ : <input type="text" name="name" id="name" placeholder="กรอกข้อมูล"><br><br>
 					<center>
 						<input class="btn btn-primary" type="submit" id="btnAdd" value="ตกลง">&nbsp;
@@ -86,7 +106,8 @@ function clickCancel(elid) {
 	 <thead>
       <tr>
         <th width = "10%">ID</th>
-        <th width = "70%">Name</th>
+        <th width = "60%">Name</th>
+        <th width = "10%"><center>Add Detail</center></th>
         <th width = "10%"><center>Edit</center></th>
         <th width = "10%"><center>Delete</center></th>
       </tr>
@@ -97,7 +118,10 @@ function clickCancel(elid) {
 				1
 			</td>
 			<td>
-				Test
+				รายงาน-งบ1
+			</td>
+			<td>
+				<center><img src = /Kmutt-portlet/image2/detail.png width = 30px; higth = 30px; onClick = 'clickAddDetl("#demo1")'></center>
 			</td>
 			<td>
 				<center><img src = /Kmutt-portlet/image/edit.png width = 30px; higth = 30px; onClick = 'clickEdit("#demo1")'></center>
@@ -123,13 +147,13 @@ function clickCancel(elid) {
 				2
 			</td>
 			<td>
-				Test2
+				รายงาน-งบ2
 			</td>
 			<td>
 				<center><img src = /Kmutt-portlet/image/edit.png width = 30px; higth = 30px; onClick = 'clickEdit("#demo2")'></center>
 			</td>
 			<td>
-				<center><img src = /Kmutt-portlet/image/delete4.png width = 30px; higth = 30px; onClick = 'clickEdit("#demo")'></center>
+				<center><img src = /Kmutt-portlet/image/delete4.png width = 30px; higth = 30px; onClick = 'clickDelete(("#demo")'></center>
 			</td>
 		</tr>
 			<div>
@@ -149,16 +173,27 @@ function clickCancel(elid) {
 				3
 			</td>
 			<td>
-				Test3
+				รายงาน-งบ3
 			</td>
 			<td>
 				<center><img src = /Kmutt-portlet/image/edit.png width = 30px; higth = 30px; onClick = 'clickEdit("#demo3")'></center>
 			</td>
 			<td>
-				<center><img src = /Kmutt-portlet/image/delete4.png width = 30px; higth = 30px; onClick = 'clickEdit("#demo")'></center>
+				<center><img src = /Kmutt-portlet/image/delete4.png width = 30px; higth = 30px; onClick = 'clickDelete(("#demo")'></center>
 			</td>
 		</tr>
-			
+			<div>
+				<tr style="display: none;" id="demo3" class = "subdiv">
+					<td colspan="4">
+						<h3>&nbsp;Edit Budget Type</h3>
+							&nbsp;ชื่อ : <input type="text" name="name" id="name" placeholder="กรอกข้อมูล"><br><br>
+							<center>
+								<input class="btn btn-primary" type="submit" id="btnAdd" value="ตกลง">&nbsp;
+								<input class="btn btn-danger" type="submit" id="btnCancel" value="ยกเลิก" onClick = 'clickCancel("#demo3")'>
+							</center>		
+					</td>
+				</tr>
+			</div>
 	</tbody>
 </table>
 </div>
