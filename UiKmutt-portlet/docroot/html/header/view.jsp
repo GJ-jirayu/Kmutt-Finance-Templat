@@ -4,38 +4,10 @@
 <%@page import="javax.portlet.PortletRequest" %>
 <%@page import="java.util.Map" %>
 
-
-  
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-<style>
-	
-.simply{
-font:14px Trebuchet MS, Tahoma;
-margin: 45px;
-width: 1100px;
-border-collapse: collapse;
-text-align: left;
-}
-.simply th{
-font:normal 16px Trebuchet MS, Tahoma;
-color: #222;
-background:#CC0000;
-padding: 10px 8px;
-border-bottom: 2px solid #ccc;
-}
-.simply td{
-border-bottom: 1px solid #ccc;
-color: #666;
-background: #fff;
-padding: 7px;
-}
-.simply tbody tr:hover td{
-color: #222;
-background: #FFFF99;
-} 
-  
+<style>  
   .modal-header, h4, .close {
   	  background-clip: padding-box;
       background-color: #5cb85c;
@@ -50,6 +22,10 @@ background: #FFFF99;
   img.set-pointer{
   	cursor: pointer;
   }
+  tbody.set-pointer{
+  	cursor: pointer;
+  }
+  
   a.set-pointertext{
   	cursor: pointer;
   }
@@ -68,13 +44,21 @@ background: #FFFF99;
     max-height: 900px;
     width: 900px;
   }	
-
+  #accitemgroup{
+  	left: 44%;
+    max-height: 900px;
+    width: 700px;
+  }	
+  
 </style>
+
 <portlet:defineObjects />
+
 <% 
 	Map uMap = (Map) renderRequest.getAttribute(PortletRequest.USER_INFO);
 	String givenName = (uMap != null) ? (String)uMap.get("user.name.given") : "";
 %>
+
 <head>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -95,6 +79,7 @@ background: #FFFF99;
 <%-- <body> givenName: <%=givenName %> --%>
 
 <h2><center>Header</h2><br>
+	<button id="delcheck" style="display: none;" class = "btn-danger">Delete</button>
 	ค้นหา : <input type="text" name="search" id="keySearch" placeholder="ค้นหา">
 	&nbsp;
 	<input class="btn btn-info" type="submit" id="btnSearch" value="ค้นหา	">
@@ -117,10 +102,11 @@ background: #FFFF99;
 		</table>
 		<br>
 	</div>
-<!-- <div class="container">	 -->	
-<table class="table table-hover">
+<div class="table table-striped">	
+<table class="table table-hover" >
 	 <thead>
       <tr>
+      	<!-- <th>Test</th> -->
         <th width = "10%">ID</th>
         <th width = "58%">Name</th>
         <th width = "10%"><center>Add Detail</center></th>
@@ -128,13 +114,18 @@ background: #FFFF99;
         <th width = "10%"><center>Delete</center></th>
       </tr>
     </thead>
-	<tbody id='list'>
+	<tbody class="set-pointer">
 		<tr>
-			<td>
+			<!-- <td>
+				<input id="1" type="checkbox" name="checkbox" value="checkbox" onClick = 'clickcheckDown("#delcheck")'>
+  			</td> -->
+			<td >
 				1
 			</td>
-			<td>
-				งบ1
+			<td  onClick = 'clickDown("#tabledetails")'>
+				<a class="set-pointertext">	
+					งบกำไร-ขาดทุน1
+				</a>
 			</td>
 			<td>
 				<center><img class="set-pointer" src = /UiKmutt-portlet/image/adddetail.png width = 30px; height = 30px;  onClick='ClickActionDetail("add")'/></center>
@@ -147,37 +138,47 @@ background: #FFFF99;
 			</td>
 		</tr>
 		<tr>
-			<td>
+			<!-- <td>
+				<input id="1" type="checkbox" name="checkbox" value="checkbox" onClick = 'clickcheckDown("#delcheck")'>
+  			</td> -->
+			<td >
 				2
 			</td>
-			<td>
-				งบ2
+			<td  onClick = 'clickDown("#tabledetails")'>
+				<a class="set-pointertext">	
+					งบกำไร-ขาดทุน2
+				</a>
 			</td>
 			<td>
 				<center><img class="set-pointer" src = /UiKmutt-portlet/image/adddetail.png width = 30px; height = 30px;  onClick='ClickActionDetail("add")'/></center>
 			</td>
 			<td>
-				<center><img src = /Kmutt-portlet/image/edit.png width = 30px; higth = 30px; onClick = 'clickEdit("#demo2")'></center>
+				<center><img class="set-pointer" src = /UiKmutt-portlet/image/edit.png width = 30px; height = 30px;  onClick='ClickActionEdit("edit")'/></center>
 			</td>
 			<td>
-				<center><img src = /Kmutt-portlet/image/delete4.png width = 30px; higth = 30px; onClick = 'clickDelete(("#demo")'></center>
+				<center><img class="set-pointer" src = /UiKmutt-portlet/image/delete4.png width = 30px; higth = 30px; onClick = 'clickDelete("delete")'></center>
 			</td>
 		</tr>
 		<tr>
-			<td>
+			<!-- <td>
+				<input id="1" type="checkbox" name="checkbox" value="checkbox" onClick = 'clickcheckDown("#delcheck")'>
+  			</td> -->
+			<td >
 				3
 			</td>
-			<td>
-				งบ3
+			<td  onClick = 'clickDown("#tabledetails")'>
+				<a class="set-pointertext">	
+					งบกำไร-ขาดทุน3
+				</a>
 			</td>
 			<td>
 				<center><img class="set-pointer" src = /UiKmutt-portlet/image/adddetail.png width = 30px; height = 30px;  onClick='ClickActionDetail("add")'/></center>
 			</td>
 			<td>
-				<center><img src = /Kmutt-portlet/image/edit.png width = 30px; higth = 30px; onClick = 'clickEdit("#demo3")'></center>
+				<center><img class="set-pointer" src = /UiKmutt-portlet/image/edit.png width = 30px; height = 30px;  onClick='ClickActionEdit("edit")'/></center>
 			</td>
 			<td>
-				<center><img src = /Kmutt-portlet/image/delete4.png width = 30px; higth = 30px; onClick = 'clickDelete(("#demo")'></center>
+				<center><img class="set-pointer" src = /UiKmutt-portlet/image/delete4.png width = 30px; higth = 30px; onClick = 'clickDelete("delete")'></center>
 			</td>
 		</tr>
 		
@@ -187,8 +188,11 @@ background: #FFFF99;
  
 	</tbody>
 </table>
+</div>
 
-<table class="table table-striped">
+<div class="table table-striped" id="tabledetails" style="display: none;">
+<img src = "/UiKmutt-portlet/image/cancel2.png" data-toggle="tooltip" title="ยกเลิกตาราง" class="set-pointer" width = 22px; higth = 22px; onClick = 'clickUp("#tabledetails")'>
+<table class="table table-hover">
 	<thead>
 		<tr>
 			<td>
@@ -232,7 +236,7 @@ background: #FFFF99;
 				1
 			</td>	
 			<td>
-				งบ1
+				งบกำไร-ขาดทุน1 
 			</td>
 			<td>
 				<center>11</center>
@@ -247,7 +251,42 @@ background: #FFFF99;
 				<center>Net total Group</center>
 			</td>
 			<td>
-			 	<center><a class="set-pointertext"  onClick='ClickActionEditDetail("edit")' >EE รอแบบของเม ACc.</a></center>
+			 	<center><a class="set-pointertext"  onClick='ClickActionViewAcc("view")' >EE</a></center>
+			</td>
+			<td>
+			 	<center><img class="set-pointer" src = /UiKmutt-portlet/image/F52.png width = 27px; height = 27px; onClick='ClickActionFund("manage")'></center>
+			</td>
+			<td>
+			 	<center><img class="set-pointer" src = /UiKmutt-portlet/image/B52.png width = 27px; height = 27px; onClick='ClickActionBudget("manage")'></center>
+			</td>
+			<td>
+				<center><img class="set-pointer" src = /UiKmutt-portlet/image/edit.png width = 30px; height = 30px;  onClick='ClickActionEditDetail("edit")'/></center>
+			</td>
+			<td>
+				<center><img class="set-pointer" src = /UiKmutt-portlet/image/delete4.png width = 30px; higth = 30px; onClick = 'clickDelete("delete")'></center>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				1
+			</td>	
+			<td>
+				งบกำไร-ขาดทุน1 
+			</td>
+			<td>
+				<center>11</center>
+			</td>
+			<td>
+				<center>13</center>
+			</td>
+			<td>
+				<center>31</center>
+			</td>
+			<td>
+				<center>Net total Group</center>
+			</td>
+			<td>
+			 	<center><a class="set-pointertext"  onClick='ClickActionViewAcc("view")' >EE</a></center>
 			</td>
 			<td>
 			 	<center><img class="set-pointer" src = /UiKmutt-portlet/image/F52.png width = 27px; height = 27px; onClick='ClickActionFund("manage")'></center>
@@ -264,6 +303,7 @@ background: #FFFF99;
 		</tr>
 	</tbody>
 </table>
+</div>
 										<!-- start add header alert model -->
 <div class="container">
   <!-- Modal -->
@@ -512,7 +552,7 @@ background: #FFFF99;
 	            			1
 	            		</td>
 	            		<td>
-	            			งบ1
+	            			งบกำไร-ขาดทุน1
 	            		</td>
 	            		<td>
 	            			100
@@ -544,10 +584,53 @@ background: #FFFF99;
   </div> 
 </div>
 										<!-- end add detail alert model -->
-			
+										<!-- start account item group alert model -->
+										
+<div  style="display:none" class="modal fade" id="accitemgroup" >
+	<div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header" style="padding:25px 55px;">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+          <h3 class="modal-title">Account Item Group</h3>
+        </div>
+        <div class="modal-body" >
+          <table class="table table-striped" id="tblGrid">
+            <thead id="tblHead">
+              <tr>
+                     <th width = "10%"><center>ID</center></th>
+       				 <th width = "50%"><center>Name Account</th></center>
+       				 <th width = "20%"><center>Account Start</center></th>
+       				 <th width = "20%"><center>Account End</center></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+             	<td><center>1</center></td>
+                <td>EE</td>
+                <td><center>001</center></td>
+                <td><center>005</center></td>
+            	
+             </tr>
+              
+              <tr>
+              	<td><center>2</center></td>
+                <td>EE</td>
+                <td><center>006</center></td>
+                <td><center>010</center></td>
+            
+             </tr>
+              
+            </tbody>
+          </table>
 
- 
-
+		</div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-danger btn-default pull-right" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span>ปิด</button>
+        </div>		
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+ </div><!-- /.modal -->
+										<!-- end account item group alert model -->
 </body>
 
 
