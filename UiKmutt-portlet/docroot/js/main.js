@@ -17,32 +17,107 @@ $(document).ready(function(){
         $("#t2").val("");
     });
 
-	function ClickAction(actType){
-		$("#myModal").modal();
+	function ClickAction(elid) {
+		if ($("#myAddDetail").is(":visible")) {
+			$("#myAddDetail").toggle(500);
+		}
+		if ($("#editheader").is(":visible")) {
+			$("#editheader").toggle(500);
+		}
+		
+		if ($(elid).is(":visible")) {
+			return false;
+		} else {
+			$(elid).toggle(500);
+		}
+	}
+
+	function clickCancel(elid) {
+		if ($(elid).is(":visible")) {
+			$(elid).toggle(400);
+			
+		} else {
+			return false;
+		}
 	}
 	
-	function ClickActionDetail(actType){
-		$("#myDetail").modal();
+	function ClickActionDetail(elid){
+		if ($("#header").is(":visible")) {
+			$("#header").toggle(500);
+		}
+		if ($("#editheader").is(":visible")) {
+			$("#editheader").toggle(500);
+		}
+		
+		if ($(elid).is(":visible")) {
+			return false;
+		} else {
+			$(elid).toggle(500);
+		}
 	}
 	
 	function clickDelete(actDelete){
 		alert("ลบข้อมูลเรียบร้อย !");
 	}
 	
-	function ClickActionEdit(actType){
-		$("#myModalEdit").modal();
+	function ClickActionEdit(elid){
+		if ($("#myAddDetail").is(":visible")) {
+			$("#myAddDetail").toggle(500);
+		}
+		if ($("#header").is(":visible")) {
+			$("#header").toggle(500);
+		}
+		if ($(elid).is(":visible")) {
+			return false;
+		} else {
+			$(elid).toggle(500);
+		}
 	}
 	
-	function ClickActionEditDetail(actType){
-		$("#editDetail").modal();
+	function ClickActionEditDetail(elid){
+		if ($("#myFund").is(":visible")) {
+			$("#myFund").toggle(500);
+		}
+		if ($("#accitemgroup").is(":visible")) {
+			$("#accitemgroup").toggle(500);
+		}
+		if ($(elid).is(":visible")) {
+			return false;
+		} else {
+			$(elid).toggle(500);
+		}
 	}
 	
 	function ClickActionBudget(actType){
 		$("#myBudget").modal();
 	}
 	
-	function ClickActionFund(actType){
-		$("#myFund").modal();
+	function ClickActionAccIG(elid){
+		if ($("#myFund").is(":visible")) {
+			$("#myFund").toggle(500);
+		}
+		if ($("#myEditDetail").is(":visible")) {
+			$("#myEditDetail").toggle(500);
+		}
+		if ($(elid).is(":visible")) {
+			return false;
+		} else {
+			$(elid).toggle(500);
+		}
+	}
+	
+	function ClickActionFund(elid){
+		if ($("#accitemgroup").is(":visible")) {
+			$("#accitemgroup").toggle(500);
+		}
+		if ($("#myEditDetail").is(":visible")) {
+			$("#myEditDetail").toggle(500);
+		}
+		if ($(elid).is(":visible")) {
+			return false;
+		} else {
+			$(elid).toggle(500);
+		}
 	}
 	
 	function ClickActionViewAcc(actType){
@@ -66,53 +141,14 @@ $(document).ready(function(){
 		}
 	}
 	
-/*	
-	id เปิด   or id ปิด
-		เปิด
-	id ปิด   and id ปิด
-		ปิด
-		
-		จะไห้มัน เชคตัวอื่นด้วย ทำ ?*/
-	
-	function clickcheckDown(elid) {
-		
-		
-	/*	if($('input[type="checkbox"]').is(':checked')){
-			
-			$(elid).toggle(500);
-			
-		}else{
-			return false;
-		}*/
-		
-			/*$("table.table>tbody>tr").each(function(){
-				
-				 alert("Checkbox state (method 1) = " + $(this.id).prop('checked'));
-			});*/
-		
-		
-		/*$("table.table>tbody>tr").each(function(){
-		    if($(this).children("td:nth-child(0)").children('input[type="checkbox"]').is(':checked')){
-		    	alert("true");
-		    }else{
-		    	alert("else");
-		    }
-		});*/
-		
-		/*if ($('#check_id').is(":checked")){    
-			if ($(elid).is(":visible")) {
-				return false;
-			} else {
-				$(elid).toggle(500);
-			}
-		}else if(elid == false){
-			if($(elid).is(":visible")) {
-				$(elid).toggle(500)
-			}else{
-				return false;
-			}
-		}*/
+	function callDetaillPage(){
+		$.ajax({
+	        url: "/UiKmutt-portlet/html/newheader/detail.jsp",
+	        type: "get",
+	        dataType: "html",
+	        success: function(data) {
+	        	$("div#container").html(data);
+	        }
+	    });
+	    return false;
 	}
-	
-	
-	
